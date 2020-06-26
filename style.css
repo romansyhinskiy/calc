@@ -1,0 +1,115 @@
+.flex{
+    display: flex;
+}
+.first{
+    width: 20%;
+}
+.second{
+    width: 10%;
+}
+.third{
+    width: 20%;
+}
+.finalResults{
+    margin: 25px 0;
+}
+.finalResults div{
+    font-size: 23px;
+}
+.final-row{
+    margin: 10px 0;
+}
+.fRow{
+    background-color: #d6b981;
+    color: #fff;
+}
+.box{
+    border: 1px solid #c0c0c0;
+}
+.box div:not(:first-child){
+    border-left: 1px solid #c0c0c0;
+}
+.box div{
+    border-bottom: 1px solid #c0c0c0;
+}
+.table-title:not(:first-child){
+    border-left: 1px solid #fff;
+}
+.controls,.results{
+    width: 45%;
+}
+
+select{
+    padding: 10px;
+}
+.prod-size, .price-size{
+    width: 33%;
+    padding: 10px;
+}
+.weight-size{
+    width: 16.5%;
+}
+.calc-container{
+    /*background-color: #000;*/
+}
+.table-style{
+    /*background-color: #212121;*/
+}
+.table-title{
+    background-color: #d6b981;
+}
+.table-title p{
+    color: #fff;
+    font-size: 23px;
+    margin: 0;
+}
+.table-style p{
+    margin: 0;
+    font-size: 23px;
+}
+.table-style input[disabled],
+.weight-size input[disabled]{
+    font-size: 23px;
+    background: transparent;
+    border: none;
+}
+.table-style input{
+    font-size: 23px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    color: black;
+    border-bottom: 1px solid #e5e5e5;
+}
+.table-style input:focus,#prod_list:focus,#materials_list{
+    outline: none;
+}
+.table-margin{
+    margin: 20px 0;
+}
+#prod_list,
+#materials_list{
+    font-size: 23px;
+    border-left: none;
+    border-right: 0;
+    border-top: none;
+    width: 300px;
+    margin-bottom: 15px;
+}
+.addLastTable{
+    background-color: #d6b981;
+    border: none;
+    color: #fff;
+    font-size: 23px;
+    padding: 10px 25px;
+}
+.totalContainer{
+    display: none;
+}
+.finalResults input[disabled]{
+    border: none;
+    background-color: transparent;
+}
+.finalResults input{
+    font-size: 23px;
+}

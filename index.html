@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+</head>
+<body>
+
+<div class="calc-container">
+    <div class="prod-calc">
+        <select name="" id="prod_list" class="listToCreate">
+            <option selected="true" disabled="disabled">Choose product</option>
+            <option value="milk" data-price="10">milk</option>
+            <option value="sugar" data-price="24">sugar</option>
+            <option value="solt" data-price="65">solt</option>
+            <option value="bread" data-price="31">bread</option>
+            <option value="onion" data-price="23">onion</option>
+            <option value="eggs" data-price="76">eggs</option>
+            <option value="tomato" data-price="78">tomato</option>
+            <option value="potato" data-price="45">potato</option>
+        </select>
+    </div>
+    <div id="tables">
+        <div class="totalContainer">
+            <p>Total: <span class="totalResultText"></span></p>
+        </div>
+    </div>
+</div>
+<div id="calculator">
+    <select name="" id="materials_list" class="matListToCreate">
+        <option selected="true" disabled="disabled">Choose Material</option>
+        <option value="mat1" data-price="1">mat1</option>
+        <option value="mat2" data-price="2">mat2</option>
+        <option value="mat3" data-price="3">mat3</option>
+    </select>
+    <div id="tablesForMat">
+        <div class="totalContainer">
+            <p>Total: <span class="totalMatResultText"></span></p>
+        </div>
+    </div>
+    <button class="addLastTable" id="totalResultBtn">Calculate total cost</button>
+
+    <div class="finalResults">
+        <div class="flex final-row">
+            <div class="first fRow">Name</div>
+            <div class="second fRow">Ilość</div>
+            <div class="third fRow">Koszt</div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">KOSZTY STAŁE</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input class="staticCost" type="text" value="66"></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">KOSZT PRODUKTÓW</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" class="prodFinalSum" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">KOSZT MATERIAŁÓW</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" class="matFinalSum" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">ILOŚĆ GODZIN PRACY</div>
+            <div class="second"><input class="setHours" value="" data-hour="10" type="text"></div>
+            <div class="third"><input class="getHours" type="text" value=""></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">ŻYWE KWIATY</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">TOPPER</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">Extra</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">Koszt tortu: ($)</div>
+            <div class="second"><input type="text" value="" disabled></div>
+            <div class="third"><input class="cakeCostElem" type="text" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">MARŻA (%)</div>
+            <div class="second"><input type="text" value=""></div>
+            <div class="third"><input type="text" value=""></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">DOSTAWA ($)</div>
+            <div class="second"><input type="text" value="40"></div>
+            <div class="third"><input type="text" value="100"></div>
+        </div>
+        <div>
+            <p>Total: <span></span></p>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
