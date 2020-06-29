@@ -2,24 +2,41 @@ $(document).ready(function () {
     let tablesContainer = $('#tables');
     let tablesForMat = $('#tablesForMat');
     let result = $('.totalContainer');
-
+    let prods = false;
+    let mats = false;
     //create prod list
     $('.listToCreate').change(function () {
         let prodPrice = $(".listToCreate option:selected").data('price');
         let prodName = $(".listToCreate option:selected").val();
         tablesContainer.prepend(calcProdTables(prodName, prodPrice));
         $(this).parents('.calc-container').find('.totalContainer').removeClass('totalContainer')
+        prods = !prods;
+        Check();
     });
+
     // create material list
     $('.matListToCreate').change(function () {
         let prodPrice = $(".matListToCreate option:selected").data('price');
         let prodName = $(".matListToCreate option:selected").val();
         tablesForMat.prepend(calcMatTables(prodName, prodPrice));
         $(this).parents('#calculator').find('.totalContainer').removeClass('totalContainer')
-
+        mats = !mats;
+        Check();
     });
+
+    //check if both containers are ready
+    function Check() {
+        if (prods > 0 && mats > 0) {
+            $('#totalResultBtn').css('display', 'block')
+        }
+    }
+    //create final results table
+    $('#totalResultBtn').click(function () {
+        $('.FinalResults').prepend(createFinalResultsTable())
+    });
+
     // calc product sum
-    $(document).on('keyup', '.prodWeight', function() {
+    $(document).on('keyup', '.prodWeight', function () {
         let prodPrice = $(this).parents('.box').find('.price-size input').data('pr');
         let prodWeigth = $(this).val();
         let total = prodPrice * prodWeigth;
@@ -30,12 +47,12 @@ $(document).ready(function () {
         let matSum = 0;
         let allProdSum = $('.prodSum').each(function () {
             prodSum += Number($(this).val());
-        })
-        totalResultText.text(prodSum)
+        });
+        totalResultText.text(prodSum);
         let allMatSum = $('.matSum').each(function () {
             matSum += Number($(this).val());
-        })
-        totalMatResultText.text(matSum)
+        });
+        totalMatResultText.text(matSum);
         setFinalSum(prodSum, matSum)
     });
 
@@ -47,24 +64,16 @@ $(document).ready(function () {
         matFinalSum.val(matSum)
     }
 
-    //set hours rate and calculate total cost
     $(document).on('keyup', '.setHours', function () {
-        let cakePrice = $('.cakeCostElem');
         let setHours = $('.setHours');
+
+        let hourState = setHours.data('hour');
         let getHours = $('.getHours');
         let setHoursNum = setHours.val();
-        let hourState = setHours.data('hour');
         let setHoursVal = setHoursNum * hourState;
-        let staticCost = $('.staticCost').val()
         getHours.val(setHoursVal);
-
-        let prodFinalSum = $('.prodFinalSum').val();
-        let matFinalSum = $('.matFinalSum').val();
-        let cakeCostElem = +matFinalSum+ +prodFinalSum +setHoursVal + +staticCost;
-        cakePrice.val(cakeCostElem)
     });
 
-    // //create total cost
     function calcProdTables(prodName, prodPrice) {
         return `
            <div class="table-margin">
@@ -83,6 +92,7 @@ $(document).ready(function () {
            </div> 
         `
     }
+
     function calcMatTables(prodName, prodPrice) {
         return `
            <div class="">
@@ -101,6 +111,72 @@ $(document).ready(function () {
             </div>
            </div> 
          
+        `
+    }
+
+    function createFinalResultsTable(){
+        return `
+            <div class="finalResults">
+        <div class="flex final-row">
+            <div class="first fRow">Name</div>
+            <div class="second fRow">Ilość</div>
+            <div class="third fRow">Koszt</div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">KOSZTY STAŁE</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input class="staticCost" type="text" value="10"></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">KOSZT PRODUKTÓW</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" class="prodFinalSum" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">KOSZT MATERIAŁÓW</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" class="matFinalSum" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">ILOŚĆ GODZIN PRACY</div>
+            <div class="second"><input class="setHours" value="" data-hour="10" type="text"></div>
+            <div class="third"><input class="getHours" type="text" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">ŻYWE KWIATY</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" value="0" class="flowers"></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">TOPPER</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" value="0" class="topper"></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">Extra</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" value="0" class="extra"></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">Koszt tortu: ($)</div>
+            <div class="second"><input type="text" value="" disabled></div>
+            <div class="third"><input class="cakeCostElem" type="text" value="" disabled></div>
+        </div>
+        <div class="flex final-row">
+            <div class="first">MARŻA (%)</div>
+            <div class="second"><input type="text" class="inputMar" onblur="marga()" value=""></div>
+            <div class="third"><input type="text" value="" class="costWithMar" disabled></div>
+        </div>
+        <div class="flex final-row final-row-last">
+            <div class="first">DOSTAWA ($)</div>
+            <div class="second"><input type="text" disabled></div>
+            <div class="third"><input type="text" class="delivery" value="90"></div>
+        </div>
+        <div class="flex between">
+            <button class="addLastTable btn-padds" onclick="calc()">Total summ</button>
+            <p>Total: <span class="showTotal"></span></p>
+        </div>
+    </div>
         `
     }
 });

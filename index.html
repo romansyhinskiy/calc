@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+
 </head>
 <body>
 
@@ -42,69 +43,39 @@
             <p>Total: <span class="totalMatResultText"></span></p>
         </div>
     </div>
-    <button class="addLastTable" id="totalResultBtn">Calculate total cost</button>
-
-    <div class="finalResults">
-        <div class="flex final-row">
-            <div class="first fRow">Name</div>
-            <div class="second fRow">Ilość</div>
-            <div class="third fRow">Koszt</div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">KOSZTY STAŁE</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input class="staticCost" type="text" value="66"></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">KOSZT PRODUKTÓW</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" class="prodFinalSum" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">KOSZT MATERIAŁÓW</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" class="matFinalSum" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">ILOŚĆ GODZIN PRACY</div>
-            <div class="second"><input class="setHours" value="" data-hour="10" type="text"></div>
-            <div class="third"><input class="getHours" type="text" value=""></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">ŻYWE KWIATY</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">TOPPER</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">Extra</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">Koszt tortu: ($)</div>
-            <div class="second"><input type="text" value="" disabled></div>
-            <div class="third"><input class="cakeCostElem" type="text" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">MARŻA (%)</div>
-            <div class="second"><input type="text" value=""></div>
-            <div class="third"><input type="text" value=""></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">DOSTAWA ($)</div>
-            <div class="second"><input type="text" value="40"></div>
-            <div class="third"><input type="text" value="100"></div>
-        </div>
-        <div>
-            <p>Total: <span></span></p>
-        </div>
-    </div>
+    <button class="addLastTable" style='display: none' id="totalResultBtn">Show total cost</button>
+    <div class="FinalResults"></div>
 </div>
+
+<script>
+    function calc() {
+        let cakePrice = $('.cakeCostElem');
+        let setHours = $('.setHours');
+        let getHours = $('.getHours').val();
+        let flowers = $('.flowers').val();
+        let topper = $('.topper').val();
+        let extra = $('.extra').val();
+        let delivery = $('.delivery').val();
+        let prodFinalSum = $('.prodFinalSum').val();
+        let matFinalSum = $('.matFinalSum').val();
+        let staticCost = $('.staticCost').val();
+        let showTotal = $('.showTotal');
+
+
+        let cakeCostElem = +matFinalSum+ +prodFinalSum + +getHours + +staticCost + +flowers + +topper + +extra + +delivery;
+        cakePrice.val(cakeCostElem);
+        showTotal.text(cakeCostElem)
+    }
+
+    function marga(){
+        let costWithMar = $('.costWithMar');
+        let inputMar = $('.inputMar').val();
+        let cakePrice = $('.cakeCostElem');
+        let mar = (+inputMar/100) * +cakePrice.val() + +cakePrice.val()
+        costWithMar.val(mar)
+    }
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="script.js"></script>
 </body>
