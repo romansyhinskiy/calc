@@ -32,7 +32,7 @@ $(document).ready(function () {
     }
     //create final results table
     $('#totalResultBtn').click(function () {
-        $('.FinalResults').prepend(createFinalResultsTable())
+        $('.FinalResults').css('display', 'block')
     });
 
     // calc product sum
@@ -114,69 +114,4 @@ $(document).ready(function () {
         `
     }
 
-    function createFinalResultsTable(){
-        return `
-            <div class="finalResults">
-        <div class="flex final-row">
-            <div class="first fRow">Name</div>
-            <div class="second fRow">Ilość</div>
-            <div class="third fRow">Koszt</div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">KOSZTY STAŁE</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input class="staticCost" type="text" value="10"></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">KOSZT PRODUKTÓW</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" class="prodFinalSum" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">KOSZT MATERIAŁÓW</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" class="matFinalSum" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">ILOŚĆ GODZIN PRACY</div>
-            <div class="second"><input class="setHours" value="" data-hour="10" type="text"></div>
-            <div class="third"><input class="getHours" type="text" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">ŻYWE KWIATY</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" value="0" class="flowers"></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">TOPPER</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" value="0" class="topper"></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">Extra</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" value="0" class="extra"></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">Koszt tortu: ($)</div>
-            <div class="second"><input type="text" value="" disabled></div>
-            <div class="third"><input class="cakeCostElem" type="text" value="" disabled></div>
-        </div>
-        <div class="flex final-row">
-            <div class="first">MARŻA (%)</div>
-            <div class="second"><input type="text" class="inputMar" onblur="marga()" value=""></div>
-            <div class="third"><input type="text" value="" class="costWithMar" disabled></div>
-        </div>
-        <div class="flex final-row final-row-last">
-            <div class="first">DOSTAWA ($)</div>
-            <div class="second"><input type="text" disabled></div>
-            <div class="third"><input type="text" class="delivery" value="90"></div>
-        </div>
-        <div class="flex between">
-            <button class="addLastTable btn-padds" onclick="calc()">Total summ</button>
-            <p>Total: <span class="showTotal"></span></p>
-        </div>
-    </div>
-        `
-    }
 });
