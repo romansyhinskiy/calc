@@ -12,7 +12,7 @@
 <body>
 
 <div class="calc-container">
-    <div >
+    <div>
         <div class="totalContainer">
             <div class="">
                 <div class="flex">
@@ -23,7 +23,11 @@
                 </div>
                 <div id="tables"></div>
             </div>
-            <p>Total: <span class="totalResultText"></span></p>
+            <div class="flex">
+                <p>Total: <span class="totalResultText itemSum"></span></p>
+                <input type="text" class="i item" placeholder="Sztuk" onblur="itemCost()" value="">
+                <input type="text" class="i itemPrice" placeholder="Koszt za sztukę" value="">
+            </div>
         </div>
         <div class="prod-calc">
             <select name="" id="prod_list" class="listToCreate">
@@ -43,7 +47,11 @@
 <div id="calculator">
     <div>
         <div class="totalContainer">
-            <p>Total: <span class="totalMatResultText"></span></p>
+            <div class="flex">
+                <p>Total: <span class="totalMatResultText itemMatSum"></span></p>
+                <input type="text" class="i matItem" placeholder="Sztuk" onblur="itemMatCost()" value="">
+                <input type="text" class="i itemMatPrice" placeholder="Koszt za sztukę" value="">
+            </div>
             <div>
                 <div class="flex">
                     <div class="table-title prod-size"><p>products</p></div>
@@ -106,7 +114,9 @@
             </div>
             <div class="flex final-row">
                 <div class="first">Koszt tortu: ($)</div>
-                <div class="second"><button class="addLastTable" onclick="calc()">Calc cake cost</button></div>
+                <div class="second">
+                    <button class="addLastTable" onclick="calc()">Calc cake cost</button>
+                </div>
                 <div class="third"><input class="cakeCostElem" type="text" value="" disabled></div>
             </div>
             <div class="flex final-row">
@@ -139,15 +149,15 @@
         let matFinalSum = $('.matFinalSum').val();
         let staticCost = $('.staticCost').val();
 
-        let cakeCostElem = +matFinalSum+ +prodFinalSum + +getHours + +staticCost + +flowers + +topper + +extra;
+        let cakeCostElem = +matFinalSum + +prodFinalSum + +getHours + +staticCost + +flowers + +topper + +extra;
         cakePrice.val(cakeCostElem);
     }
 
-    function marga(){
+    function marga() {
         let costWithMar = $('.costWithMar');
         let inputMar = $('.inputMar').val();
         let cakePrice = $('.cakeCostElem');
-        let mar = (+inputMar/100) * +cakePrice.val() + +cakePrice.val()
+        let mar = (+inputMar / 100) * +cakePrice.val() + +cakePrice.val()
         costWithMar.val(mar)
     }
 
@@ -158,10 +168,25 @@
 
         let itemTotalCost = +delivery + +mar;
         showTotal.text(itemTotalCost)
-
-        console.log('dfgsf')
-
     }
+
+    //calculate item cost
+    function itemCost() {
+        let item = $('.item').val();
+        let itemSum = $('.itemSum').text();
+        let itemPrice = $('.itemPrice');
+        let itemCost = Number(itemSum) / Number(item);
+        itemPrice.val(itemCost.toFixed(2))
+    }
+
+    function itemMatCost() {
+        let item = $('.matItem').val();
+        let itemSum = $('.itemMatSum').text();
+        let itemPrice = $('.itemMatPrice');
+        let itemCost = Number(itemSum) / Number(item);
+        itemPrice.val(itemCost.toFixed(2))
+    }
+
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
