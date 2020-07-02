@@ -12,37 +12,55 @@
 <body>
 
 <div class="calc-container">
-    <div class="prod-calc">
-        <select name="" id="prod_list" class="listToCreate">
-            <option selected="true" disabled="disabled">Choose product</option>
-            <option value="milk" data-price="10">milk</option>
-            <option value="sugar" data-price="24">sugar</option>
-            <option value="solt" data-price="65">solt</option>
-            <option value="bread" data-price="31">bread</option>
-            <option value="onion" data-price="23">onion</option>
-            <option value="eggs" data-price="76">eggs</option>
-            <option value="tomato" data-price="78">tomato</option>
-            <option value="potato" data-price="45">potato</option>
-        </select>
-    </div>
-    <div id="tables">
+    <div >
         <div class="totalContainer">
+            <div class="">
+                <div class="flex">
+                    <div class="table-title prod-size"><p>products</p></div>
+                    <div class="table-title price-size"><p>price</p></div>
+                    <div class="table-title weight-size"><p>weight</p></div>
+                    <div class="table-title weight-size"><p>total</p></div>
+                </div>
+                <div id="tables"></div>
+            </div>
             <p>Total: <span class="totalResultText"></span></p>
+        </div>
+        <div class="prod-calc">
+            <select name="" id="prod_list" class="listToCreate">
+                <option selected="true" disabled="disabled">Choose product</option>
+                <option value="milk" data-price="10">milk</option>
+                <option value="sugar" data-price="24">sugar</option>
+                <option value="solt" data-price="65">solt</option>
+                <option value="bread" data-price="31">bread</option>
+                <option value="onion" data-price="23">onion</option>
+                <option value="eggs" data-price="76">eggs</option>
+                <option value="tomato" data-price="78">tomato</option>
+                <option value="potato" data-price="45">potato</option>
+            </select>
         </div>
     </div>
 </div>
 <div id="calculator">
+    <div>
+        <div class="totalContainer">
+            <p>Total: <span class="totalMatResultText"></span></p>
+            <div>
+                <div class="flex">
+                    <div class="table-title prod-size"><p>products</p></div>
+                    <div class="table-title price-size"><p>price</p></div>
+                    <div class="table-title weight-size"><p>weight</p></div>
+                    <div class="table-title weight-size"><p>total</p></div>
+                </div>
+                <div id="tablesForMat"></div>
+            </div>
+        </div>
+    </div>
     <select name="" id="materials_list" class="matListToCreate">
         <option selected="true" disabled="disabled">Choose Material</option>
         <option value="mat1" data-price="1">mat1</option>
         <option value="mat2" data-price="2">mat2</option>
         <option value="mat3" data-price="3">mat3</option>
     </select>
-    <div id="tablesForMat">
-        <div class="totalContainer">
-            <p>Total: <span class="totalMatResultText"></span></p>
-        </div>
-    </div>
     <button class="addLastTable" style='display: none' id="totalResultBtn">Show total cost</button>
     <div class="FinalResults" style="display: none">
         <div class="finalResults">
@@ -88,7 +106,7 @@
             </div>
             <div class="flex final-row">
                 <div class="first">Koszt tortu: ($)</div>
-                <div class="second"><input type="text" value="" disabled></div>
+                <div class="second"><button class="addLastTable" onclick="calc()">Calc cake cost</button></div>
                 <div class="third"><input class="cakeCostElem" type="text" value="" disabled></div>
             </div>
             <div class="flex final-row">
@@ -102,7 +120,7 @@
                 <div class="third"><input type="text" class="delivery" value="90"></div>
             </div>
             <div class="flex between">
-                <button class="addLastTable btn-padds" onclick="calc()">Total summ</button>
+                <button class="addLastTable btn-padds" onclick="summ()">Total summ</button>
                 <p>Total: <span class="showTotal"></span></p>
             </div>
         </div>
@@ -117,16 +135,12 @@
         let flowers = $('.flowers').val();
         let topper = $('.topper').val();
         let extra = $('.extra').val();
-        let delivery = $('.delivery').val();
         let prodFinalSum = $('.prodFinalSum').val();
         let matFinalSum = $('.matFinalSum').val();
         let staticCost = $('.staticCost').val();
-        let showTotal = $('.showTotal');
 
-
-        let cakeCostElem = +matFinalSum+ +prodFinalSum + +getHours + +staticCost + +flowers + +topper + +extra + +delivery;
+        let cakeCostElem = +matFinalSum+ +prodFinalSum + +getHours + +staticCost + +flowers + +topper + +extra;
         cakePrice.val(cakeCostElem);
-        showTotal.text(cakeCostElem)
     }
 
     function marga(){
@@ -135,6 +149,18 @@
         let cakePrice = $('.cakeCostElem');
         let mar = (+inputMar/100) * +cakePrice.val() + +cakePrice.val()
         costWithMar.val(mar)
+    }
+
+    function summ() {
+        let delivery = $('.delivery').val();
+        let mar = $('.costWithMar').val();
+        let showTotal = $('.showTotal');
+
+        let itemTotalCost = +delivery + +mar;
+        showTotal.text(itemTotalCost)
+
+        console.log('dfgsf')
+
     }
 </script>
 

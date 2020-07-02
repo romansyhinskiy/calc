@@ -39,7 +39,8 @@
     padding: 10px;
 }
 .box{
-    border: 1px solid #c0c0c0;
+    border-left: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;;
 }
 .box div:not(:first-child){
     border-left: 1px solid #c0c0c0;
@@ -90,7 +91,7 @@ select{
     border: none;
 }
 .table-style input{
-    width: 100px;
+    width: 130px;
     font-size: 23px;
     border-left: none;
     border-right: none;

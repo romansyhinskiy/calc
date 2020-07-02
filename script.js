@@ -2,15 +2,16 @@ $(document).ready(function () {
     let tablesContainer = $('#tables');
     let tablesForMat = $('#tablesForMat');
     let result = $('.totalContainer');
-    let prods = false;
-    let mats = false;
+    let prods = null;
+    let mats = null;
+
     //create prod list
     $('.listToCreate').change(function () {
         let prodPrice = $(".listToCreate option:selected").data('price');
         let prodName = $(".listToCreate option:selected").val();
-        tablesContainer.prepend(calcProdTables(prodName, prodPrice));
-        $(this).parents('.calc-container').find('.totalContainer').removeClass('totalContainer')
-        prods = !prods;
+        tablesContainer.append(calcProdTables(prodName, prodPrice));
+        $(this).parents('.calc-container').find('.totalContainer').removeClass('totalContainer');
+        prods += 1;
         Check();
     });
 
@@ -18,15 +19,15 @@ $(document).ready(function () {
     $('.matListToCreate').change(function () {
         let prodPrice = $(".matListToCreate option:selected").data('price');
         let prodName = $(".matListToCreate option:selected").val();
-        tablesForMat.prepend(calcMatTables(prodName, prodPrice));
-        $(this).parents('#calculator').find('.totalContainer').removeClass('totalContainer')
-        mats = !mats;
+        tablesForMat.append(calcMatTables(prodName, prodPrice));
+        $(this).parents('#calculator').find('.totalContainer').removeClass('totalContainer');
+        mats += 1;
         Check();
     });
 
     //check if both containers are ready
     function Check() {
-        if (prods > 0 && mats > 0) {
+        if (prods > 0 && mats > 0 ) {
             $('#totalResultBtn').css('display', 'block')
         }
     }
@@ -76,17 +77,11 @@ $(document).ready(function () {
 
     function calcProdTables(prodName, prodPrice) {
         return `
-           <div class="table-margin">
-            <div class="flex">
-                <div class="table-title prod-size"><p>products</p></div>
-                <div class="table-title price-size"><p>price</p></div>
-                <div class="table-title weight-size"><p>weight</p></div>
-                <div class="table-title weight-size"><p>total</p></div>
-            </div>
+           <div class="">
             <div class="flex box">
                 <div class="table-style prod-size"><p>${prodName}</p></div>
                 <div class="table-style price-size"><input type="text" id="" name="" value="${prodPrice + '$'}" data-pr="${prodPrice}" disabled></div>
-                <div class="table-style weight-size"><input type="text" id="" name="" class="prodWeight" value="" placeholder="type price"></div>
+                <div class="table-style weight-size"><input type="text" id="" name="" class="prodWeight" value="" placeholder="type weight"></div>
                 <div class="table-style weight-size"><input type="text" id="" name="" class="prodWeight prodTotal prodSum" value="" placeholder="sum" disabled></div>
             </div>
            </div> 
@@ -96,17 +91,10 @@ $(document).ready(function () {
     function calcMatTables(prodName, prodPrice) {
         return `
            <div class="">
-            <div class="flex">
-                <div class="table-title prod-size"><p>products</p></div>
-                <div class="table-title price-size"><p>price</p></div>
-                <div class="table-title weight-size"><p>weight</p></div>
-                <div class="table-title weight-size"><p>total</p></div>
-
-            </div>
             <div class="flex box">
                 <div class="table-style prod-size"><p>${prodName}</p></div>
                 <div class="table-style price-size"><input type="text" id="" name="" value="${prodPrice + '$'}" data-pr="${prodPrice}" disabled></div>
-                <div class="table-style weight-size"><input type="text" id="" name="" class="prodWeight" value="" placeholder="type price"></div>
+                <div class="table-style weight-size"><input type="text" id="" name="" class="prodWeight" value="" placeholder="type weight"></div>
                 <div class="table-style weight-size"><input type="text" id="" name="" class="prodWeight prodTotal matSum" value="" placeholder="sum" disabled></div>
             </div>
            </div> 
